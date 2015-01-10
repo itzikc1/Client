@@ -14,7 +14,7 @@ public class MyConsoleView extends Observable implements View{
 	public void start() {
 		//Welcome show
 		System.out.println("Welcome to my project");
-		System.out.println( "enter Select and after that the Game you want \"Maze\"or... and press enter.\n "+
+		System.out.println( "enter Select and after that the Game you want \"Maze\"or EightPuzzle and press enter.\n "+
 		"enter Algorithm:to choose algorithm \n Enter Solve to start \n enter exit to quit any time you want to quit\n"+
 		"thank you for choosing us project \n");	
 		userAction = "";

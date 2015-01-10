@@ -35,6 +35,9 @@ public class Presenter implements Observer {
 			if (arr.length ==5) {
 				args = arr[1]+" "+arr[2]+" "+arr[3]+" "+arr[4];
 		    }
+			if (arr.length ==3){
+				args = arr[1]+" "+arr[2];	
+			}
 			if (arr.length ==2){
 				args = arr[1];	
 			}

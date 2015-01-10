@@ -10,7 +10,8 @@ public class GetProperties {
 private static final String FILE_NAME = "resources/Properties.xml";
 	public static MyProperties readProperties() {
 		XMLDecoder decoder = null;	//Create new XML file and start with NULL
-		try {//try to get XML file
+		//try to get XML file
+		try {
 			decoder = new XMLDecoder(new FileInputStream(FILE_NAME));
 			MyProperties properties = (MyProperties)decoder.readObject();//begin the Properties of server 
 			return properties;			
@@ -38,5 +39,4 @@ private static final String FILE_NAME = "resources/Properties.xml";
 //			encoder.close();	
 //		    }	
 //	}
-	
 }
