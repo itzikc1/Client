@@ -32,5 +32,6 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void doTask() {
 		solveDomain();
+		getSolution();
 	}
 }
