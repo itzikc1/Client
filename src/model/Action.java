@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-
+//tamir note//
 public class Action implements Serializable {
 	/**
 	 * 
