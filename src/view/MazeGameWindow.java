@@ -1,35 +1,41 @@
 package view;
 
-import model.Solution;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 
-public class MazeGameWindow extends BasicWindow implements View {
-	private String userAction;
-	
+
+
+
+public class MazeGameWindow  extends BasicWindow{
+
 	public MazeGameWindow(int width, int height, String title) {
 		super(width, height, title);
-	}
-	@Override
-	public String getUserAction() {
-		return userAction;
-	}
-
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void displayCurrentState() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void displaySolution(Solution solution) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	void initWidgets() {
-		// TODO Auto-generated method stub		
-	}
-}
+		 shell.setLayout(new GridLayout(1, false));
+		   Maze maze=new Maze(shell,SWT.BORDER);
+		   maze.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true));
+		   maze.addPaintListener(new PaintListener() {
+				@Override
+				public void paintControl(PaintEvent e) {
+					// TODO Auto-generated method stub
+					
+					
+					
+				}
+			});
+
+		   
+	              
+       }
+     }
+ 		 
+
+
+
