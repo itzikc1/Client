@@ -8,6 +8,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 
+import presenter.Presenter;
+
 public class SelectGameWindow extends BasicWindow{
 	public class StringHolder{
 		String setselected;
@@ -16,12 +18,11 @@ public class SelectGameWindow extends BasicWindow{
 			return setselected;
 		}
 		public void setSetselected(String setselected) {
-
 			this.setselected = setselected;
 		}
 	}
-	public SelectGameWindow(int width, int height, String title) {
-		super(width, height, title);}
+	public SelectGameWindow(Presenter presenter,int width, int height, String title) {
+		super(presenter,width, height, title);}
 
 	@Override
 	void initWidgets() {
@@ -68,17 +69,19 @@ public class SelectGameWindow extends BasicWindow{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				// Choose window according to the game 	  
-				display.dispose();	
+				//display.dispose();	
 				if(message.getSetselected().equals("Maze"))
-				{	
-				BasicWindow window = new MazeGameWindow(400, 300, "Maze Game");
-			    window.run();	
-				}
-				if(message.getSetselected().equals("EightPuzzle"))
 				{
-				BasicWindow window = new MazeGameWindow(400, 300, "EightPuzzle");
-			    window.run();	
-				}		
+				PropretiesWindow mazepro =new PropretiesMaze(presenter, display, 400,300,"Maze Propreties");
+				mazepro.run();
+//				BasicWindow window = new MazeGameWindow(400, 300, "Maze Game");
+//			    window.run();	
+				}
+				//if(message.getSetselected().equals("EightPuzzle"))
+				//{
+//				BasicWindow window = new MazeGameWindow(400, 300, "EightPuzzle");
+//			    window.run();	
+				//}		
 			}	
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {

@@ -20,7 +20,6 @@ public class Presenter implements Observer {
 	public void setView(View view) {
 		this.view = view;
 	}
-	//
 	public Presenter(Model model, View view) {
 		this.model = model;
 		this.view = view;
@@ -64,8 +63,8 @@ public class Presenter implements Observer {
 	public static void main(String[] args) {
 		MyModel model = new MyModel();
 		//Create the windows start
-		SelectGameWindow view = new SelectGameWindow(300, 300, "The Games");
 	    Presenter presenter = new Presenter(model);	
+	    SelectGameWindow view = new SelectGameWindow(presenter,300, 300, "The Games");
 		model.addObserver(presenter);
 		view.run();
 		//MyConsoleView view = new MyConsoleView();
