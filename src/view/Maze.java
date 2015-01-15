@@ -1,10 +1,14 @@
 package view;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import modelServer.Action;
+
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.PaintEvent;
@@ -14,7 +18,10 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
 public class Maze extends Canvas{
-	
+	ArrayList<model.Action> solution;
+	public void setSolution(ArrayList<model.Action> arrayList) {
+		this.solution = arrayList;
+	}
 	int row,col,wall;
 	
 	public int getRow() {
@@ -91,6 +98,7 @@ public class Maze extends Canvas{
 		});
 	}
 	public void start(){
+		int flag=0;
 		timer= new Timer();
 		task=new TimerTask() {
 			@Override
@@ -98,9 +106,9 @@ public class Maze extends Canvas{
 				getDisplay().syncExec(new Runnable() {
 					@Override
 					public void run() {
-				Random r =new Random();
-				c.x+=-5+r.nextInt(11);
-				c.y+=-5+r.nextInt(11);
+						flag++;
+				c.x=
+				c.y=
 				redraw();
 			
 					}

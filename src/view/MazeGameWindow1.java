@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+
+import model.Action;
 import model.Solution;
 
 import org.eclipse.swt.SWT;
@@ -20,6 +23,7 @@ import presenter.Presenter;
 public class MazeGameWindow1 extends UIView {
 	String UserAction;
 	String setselected;
+	Solution solution;
 	public String getSetselected() {
 		return setselected;
 	}
@@ -103,6 +107,7 @@ public class MazeGameWindow1 extends UIView {
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				maze.setSolution(solution.getAction());
 				maze.start();	
 			}
 			
@@ -144,9 +149,10 @@ public class MazeGameWindow1 extends UIView {
 
 	@Override
 	public void displaySolution(Solution solution) {
-		// TODO Auto-generated method stub
-		
-	}
+		this.solution=solution;
+				
+				
+			}
 
 
 	
