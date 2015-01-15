@@ -1,4 +1,4 @@
-package modelServer;
+package model;
 
 public abstract class State implements Comparable<State> {
 

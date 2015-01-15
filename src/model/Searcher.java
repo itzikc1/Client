@@ -1,6 +1,7 @@
-package modelServer;
+package model;
 
 import java.util.ArrayList;
+
 
 public interface Searcher {
 	int getNumberOfNodesEvaluated();

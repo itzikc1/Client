@@ -3,7 +3,8 @@ package game;
 import java.util.HashMap;
 import java.util.Random;
 
-import modelServer.*;
+import model.*;
+
 
 
 public class EightPuzzleDomain implements SearchDomain {

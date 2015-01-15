@@ -1,7 +1,7 @@
 package game;
 
 import java.util.Scanner;
-import modelServer.*;
+import model.State;
 public class MazeGameState extends State{
 	int stateX,stateY;
 	//private String input;
@@ -9,6 +9,13 @@ public class MazeGameState extends State{
 		super(price);
 		this.stateX=stateX;
 		this.stateY=stateY;
+		//Scanner scanner = new Scanner(System.in);
+		//System.out.println("if you want to watch the maze enter yes or no:");
+		//input = scanner.nextLine();
+		//if (input.equals("yes"))
+		//{
+	     System.out.print(+stateX+","+stateY+","+"|");
+		//}
 	}
 	public int getStateX()
 	{
@@ -42,6 +49,6 @@ public class MazeGameState extends State{
 	public String stateToString() {
 		String sStateX=String.valueOf(stateX);
 		String sStatey=String.valueOf(stateY);
-		return sStateX+sStatey+",";
+		return sStateX+" "+sStatey;
 	}	
 }

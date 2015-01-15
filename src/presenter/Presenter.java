@@ -32,6 +32,7 @@ public class Presenter implements Observer {
 		// go to model
 		if (o instanceof Model) {
 			Solution solution = model.getSolution();
+			view.displayProblem(model.getProblem());
 			view.displaySolution(solution);
 		}
 		// go to view

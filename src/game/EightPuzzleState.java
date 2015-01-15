@@ -1,6 +1,7 @@
 package game;
 
-import modelServer.*;
+import model.State;
+
 
 public class EightPuzzleState extends State{
 

@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import model.Action;
+import model.Problem;
 import model.Solution;
 
 import org.eclipse.swt.SWT;
@@ -15,7 +16,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-
 import presenter.Presenter;
 
 
@@ -24,6 +24,7 @@ public class MazeGameWindow1 extends UIView {
 	String UserAction;
 	String setselected;
 	Solution solution;
+	Problem problem;
 	public String getSetselected() {
 		return setselected;
 	}
@@ -46,7 +47,7 @@ public class MazeGameWindow1 extends UIView {
 		   Button start = new Button(shell, SWT.PUSH);
 		   start.setText("Start");
 		   start.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
-		   Maze maze=new Maze(shell,SWT.MULTI | SWT.BORDER);
+		   Maze maze=new Maze(shell,SWT.MULTI | SWT.BORDER,problem);
 		   maze.setLayoutData(new GridData(SWT.FILL,SWT.FILL,true,true,1,8));
 		   Button stop = new Button(shell, SWT.PUSH);
 		   stop.setText("stop");
@@ -149,10 +150,14 @@ public class MazeGameWindow1 extends UIView {
 
 	@Override
 	public void displaySolution(Solution solution) {
-		this.solution=solution;
-				
-				
+		this.solution=solution;	
 			}
+
+	@Override
+	public void displayProblem(Problem problem) {
+		this.problem=problem;
+		
+	}
 
 
 	

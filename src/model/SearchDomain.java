@@ -1,6 +1,8 @@
-package modelServer;
+package model;
 
 import java.util.HashMap;
+
+
 
 public interface SearchDomain  {
 	//define the problem of the game

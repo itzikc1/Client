@@ -1,4 +1,4 @@
-package modelServer;
+package model;
 import game.*;
 
 
@@ -6,7 +6,7 @@ public class DomainFactory {
 	private int row,col,wall;
 	private String  colNum,EightPuzzleOrRow,wallNum;
 	/*DomainName it for the name of Domain and all the other parameter for began */
-	public SearchDomain getDomain (String DomainName)
+	public String getDomain (String DomainName)
 	{
 		settingNull();		
 		String[] arr = DomainName.split(" ");
@@ -25,11 +25,11 @@ public class DomainFactory {
 			row = Integer.parseInt(EightPuzzleOrRow);
 			col = Integer.parseInt(colNum);
 			wall =Integer.parseInt(wallNum);
-			return new MazeGameDomain(row,col,wall);//enter the number to start Maze
+			return new MazeGameDomain(row,col,wall).getProblemDescription();//enter the number to start Maze
 		}
 		if(domainName.equalsIgnoreCase("EightPuzzle"))
 		{
-			return new EightPuzzleDomain(EightPuzzleOrRow);		
+			return new EightPuzzleDomain(EightPuzzleOrRow).getProblemDescription();		
 		}
 		return null;	
 	}
