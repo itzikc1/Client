@@ -136,7 +136,7 @@ public class MazeGameDomain implements SearchDomain{
 	//Create the key for this specific maze 
 	@Override
 	public String getProblemDescription() {
-	return "start State:" + " "+getStartState().stateToString() +" "+ ",final State:" +" "+ getGoalState().stateToString() +" "+ ",walls State:" +" "+ getWall1() ;
+	return "maze"+" "+"start State:" + " "+getStartState().stateToString() +" "+ ",final State:" +" "+ getGoalState().stateToString() +" "+ ",walls State:" +" "+ getWall1() ;
 		
 	}
 }
