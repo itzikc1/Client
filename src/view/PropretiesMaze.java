@@ -53,11 +53,13 @@ public class PropretiesMaze extends PropretiesWindow {
 		  Button start = new Button(shell, SWT.PUSH);
 		  start.setText("Start");
 		  start.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+		
 		  Label lblRow = new Label(shell, SWT.NONE);
 		  lblRow.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		  lblRow.setText("Enter row: ");
 		  Text row=new Text(shell,SWT.MULTI | SWT.BORDER);
-  	   row.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+  	      row.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+  	   
   	   Label lblColl = new Label(shell, SWT.NONE);
   	   lblColl.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
   	   lblColl.setText("Enter coll: ");
@@ -67,8 +69,9 @@ public class PropretiesMaze extends PropretiesWindow {
   	   lblwall.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
   	   lblwall.setText("Enter wall: ");
 		   Text wall=new Text(shell,SWT.MULTI | SWT.BORDER);
-  	   wall.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
-		   row.addSelectionListener(new SelectionListener() {
+  	        wall.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+		  
+  	        row.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {		

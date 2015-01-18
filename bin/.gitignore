@@ -1,8 +1,7 @@
+/game/
 /model/
+/modelServer/
 /networking/
 /presenter/
 /properties/
-/task/
 /view/
-/modelServer/
-/game/

@@ -135,6 +135,7 @@ public class MazeGameWindow1 extends UIView {
 		return UserAction;
 	}
 
+	
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
