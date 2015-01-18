@@ -117,7 +117,7 @@ public class PropretiesMaze extends PropretiesWindow {
 				setRow(row.getText());
 				setCol(col.getText());
 				setWall(wall.getText());
-				UIView window = new MazeGameWindow1(presenter,null,400, 300, "Maze Game",getUserAction());
+				UIView window = new MazeGameWindow1(presenter,null,400,300, "Maze Game",getUserAction());
 			    window.run();	
 					
 			}

@@ -46,6 +46,7 @@ public class MazeGameWindow1 extends UIView {
 		   start.setText("Start");
 		   start.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		   Maze maze=new Maze(shell,SWT.MULTI | SWT.BORDER,problem);
+		
 		   maze.setLayoutData(new GridData(SWT.FILL,SWT.FILL,true,true,1,8));
 		   Button stop = new Button(shell, SWT.PUSH);
 		   stop.setText("stop");

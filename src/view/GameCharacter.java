@@ -10,6 +10,6 @@ import org.eclipse.swt.graphics.Color;
 		   }
 		   public void paint(PaintEvent e,int w,int h){
 			e.gc.setForeground(new Color(null,255,0,0));
-			e.gc.drawOval(x,y, w, h);
+			e.gc.drawOval(x,y,w,h);
 		   }
 		}
