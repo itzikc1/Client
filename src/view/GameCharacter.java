@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Display;
 
 	class GameCharacter{
 		 int x,y;
-		 Image image=new Image(Display.getDefault(),"resources/1.jpg");
+		 Image image=new Image(Display.getDefault(),"resources/Linux small.jpg");
 		public GameCharacter(int x,int y) {
 		
 			 this.x=x;this.y=y;
