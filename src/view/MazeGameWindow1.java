@@ -9,6 +9,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -40,14 +41,15 @@ public class MazeGameWindow1 extends UIView {
 	void initWidgets() {
 		MazeGameWindow1.this.setChanged();
 		MazeGameWindow1.this.notifyObservers();
-		 shell.setLayout(new GridLayout(2, false));		  
+		shell.setLayout(new GridLayout(2, false));		  
 		   //fill all the windows 
 		   Button start = new Button(shell, SWT.PUSH);
 		   start.setText("Start");
 		   start.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+		   Image s=new Image(Display.getDefault(),"resources/blue.jpg");
 		   Maze maze=new Maze(shell,SWT.MULTI | SWT.BORDER,problem);
-		
 		   maze.setLayoutData(new GridData(SWT.FILL,SWT.FILL,true,true,1,8));
+		   maze.setBackgroundImage(s);		   
 		   Button stop = new Button(shell, SWT.PUSH);
 		   stop.setText("stop");
 		   stop.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));

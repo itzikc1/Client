@@ -3,6 +3,7 @@ package game;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
+
 import model.Action;
 import model.SearchDomain;
 import model.State;
@@ -25,7 +26,7 @@ public class MazeGameDomain implements SearchDomain{
 		maze=new MazeGameState[row][coll];
 		createRandomMaze();
 		createWallMaze();	
-		start=maze[1][1];	
+		start=maze[0][0];	
 		goal=maze[row-1][coll-1];
 	 System.out.println("\n");
 	}
@@ -86,22 +87,64 @@ public class MazeGameDomain implements SearchDomain{
 		int arr[]= new int[numberOfWalls];
 		
 		for (int i=0; i<arr.length;i++){
-		int  n = rand.nextInt(coll);
+		int  n = rand.nextInt(row-2);
 		arr[i]=n;}		
 		Arrays.sort(arr);	
 		for (int i=0; i<arr.length;i++){
-			int  n = rand.nextInt(coll);
-			arr[i]=n;}
-		
-		int num=2;
-		for (int i=2; i<arr.length;i++){
+			int  n = rand.nextInt(coll-2);
+			arr[i]=n;
+			}		
+		int num=0;
+		for (int i=0; i<arr.length;i++){
 		maze[arr[i]][num++].setWall(true);
 		//add to string the wall for the key in solution file
 		this.wall1+=String.valueOf(arr[i]);
 		this.wall1+=" ";
 		this.wall1+=String.valueOf(num++);
 		this.wall1+=" ";
-		}		
+		}	
+		////////////////////////////////
+		for(int k=2;k<row;k++)
+	       {
+			maze[k][0].setWall(true);
+			 this.wall1+=String.valueOf(k);			 
+			 this.wall1+=" ";
+			 this.wall1+=Integer.valueOf(0);
+			 this.wall1+=" ";
+	       }
+			 for(int s=2;s<coll;s++)
+	      
+		       {
+				 maze[0][s].setWall(true);
+				 this.wall1+=Integer.valueOf(0);
+				 this.wall1+=" ";			 
+				 this.wall1+=String.valueOf(s);
+				 this.wall1+=" ";
+	       }
+			 //////////////////////////////////////////
+//			 this.wall1+=String.valueOf(this.row);
+//			 this.wall1+=" ";
+//			 this.wall1+=String.valueOf(k);	
+//			 this.wall1+=" ";
+//			 this.wall1+=String.valueOf(k);	
+//			 this.wall1+=" ";
+//			 this.wall1+=String.valueOf(this.row);
+//			 this.wall1+=" ";
+     
+//		for(int s=0;s<row;s++)
+//		{
+//			
+//			 maze[s][row].setWall(true);
+//			 this.wall1+=String.valueOf(this.row);
+//			 this.wall1+=" ";
+//			 this.wall1+=String.valueOf(s);	
+//			 this.wall1+=" ";
+//			 maze[coll][s].setWall(true);
+//			 this.wall1+=String.valueOf(this.coll);
+//			 this.wall1+=" ";
+//			 this.wall1+=String.valueOf(s);
+//			 this.wall1+=" ";		
+//		}
 	}
 	@Override
 	public int GScore(State current) {

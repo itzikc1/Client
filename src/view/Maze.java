@@ -7,6 +7,7 @@ import java.util.TimerTask;
 
 import model.Problem;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.PaintEvent;
@@ -44,34 +45,39 @@ public class Maze extends Canvas{
 	GameCharacter c;
 	Timer timer;
 	TimerTask task;
+	//Image image=new Image(Display.getDefault(),"resources/Linux small.jpg");
 	public Maze(Composite parent, int style,Problem problem) {
         super(parent, style);
         //devise is the display like many scream
        setProblem(problem);
-        setBackground(new Color(null, 255, 255, 255));
+       // setBackground(new Color(null, 255, 255, 255));
+       
         c= new GameCharacter(0,0);
           addPaintListener(new PaintListener() {
     		@Override
     		public void paintControl(PaintEvent e) {
-    			e.gc.setForeground(new Color(null,0,0,0));
-				   e.gc.setBackground(new Color(null,0,0,0));
+    			//e.gc.setForeground(new Color(null,0,0,0));
+    			Image wall=new Image(Display.getDefault(),"resources/wall.jpg");
+				//e.gc.setBackground(new Color(null,0,0,0));//black wall	
 				   //create the size of the canvas
 				   int width=getSize().x;
 				   int height=getSize().y;
 				   int w=width/mazeData[0].length;
-				   int h=height/mazeData.length;
-				   //Image c=new Image(Display.getDefault(),"resources/1.jpg");
-				   //e.gc.drawImage(c, 0,0);
+				   int h=height/mazeData.length;				  
+				   Image r=new Image(Display.getDefault(),"resources/goal.jpg");
 				   for(int i=0;i<mazeData.length;i++){
 				      for(int j=0;j<mazeData[i].length;j++){
 				          int x=j*w;
 				          int y=i*h;
-				          if(mazeData[i][j]!=0)//black wall 
-				            e.gc.fillRectangle(x,y,w,h);  
+				          if(mazeData[i][j]!=0){//black wall 
+				         // e.gc.fillRectangle(x,y,w,h);
+				        	 e.gc.drawImage(wall, 0, 0, 100,100, x, y, w, h);				       
+				          }
 				      }	
 				   }
 				   c.paint(e,w,h);
-				   
+				   e.gc.drawImage(r,0,0,100,100,(mazeData.length-2)*w,(mazeData.length-1)*h,w,h);
+ 
     		}
     	});
         addDisposeListener(new DisposeListener() {		
@@ -92,20 +98,50 @@ public class Maze extends Canvas{
 					public void run() {
 						switch (solution.get(flag).getActionName()) {
 						case "Left":
+							if (mazeData[c.y][c.x-1]==0)
+							{
 							c.x=c.x-1;
 							flag++;
+							redraw();
+							}
+							if (mazeData[c.y][c.x-1]==0)
+							{
+								WinWindows();
+							}
 							break;
 						case "Right":
+							if (mazeData[c.y][c.x+1]==0)
+							{
 							c.x=c.x+1;
 							flag++;
+							redraw();
+							}
+							if (mazeData[c.y][c.x+1]==0)
+							{
+								WinWindows();
+							}
 							break;
 						case "Down":
+							if (mazeData[c.y+1][c.x]==0)
+							{
 							c.y=c.y+1;
 							flag++;
+							redraw();
+							}
+							if (mazeData[c.y+1][c.x]==0){
+								WinWindows();
+							}
 							break;
 						case "Up":
+							if (mazeData[c.y-1][c.x]==0)
+							{
 							c.y=c.y-1;
 							flag++;
+							redraw();
+							}
+							if (mazeData[c.y-1][c.x]==0){
+								WinWindows();
+							}
 							break;
 						default:
 							break;
@@ -115,7 +151,7 @@ public class Maze extends Canvas{
 				});			
 			}
 		};
-		  timer.scheduleAtFixedRate(task, 0,1000);
+		  timer.scheduleAtFixedRate(task, 0,250);
 	   }
 	public void stop(){
 		if(task!=null)
@@ -127,24 +163,22 @@ public class Maze extends Canvas{
 		this.problem = problem;	
 		String[] arr = problem.getDomainName().split(" ");
 		int [][] mazeData1=new int[Integer.parseInt(arr[7])+1][Integer.parseInt(arr[8])+1];	
-		       for(int i=12;i<arr.length-1;i++)
+		       for(int i=12;i<arr.length;i+=2)
 		       {	    			
 			   mazeData1[Integer.parseInt(arr[i])][Integer.parseInt(arr[i+1])]=1;	
 		       }
-		       for(int k=0;k<Integer.parseInt(arr[7]);k++)
+		       for(int k=1;k<Integer.parseInt(arr[7]);k++)
 		       {
-		    	   
-		    	   mazeData1[k][0]=1;
-		    	   mazeData1[0][k]=1; 
-		    	   mazeData1[Integer.parseInt(arr[7])][k]=1; 
-		    	   mazeData1[k][Integer.parseInt(arr[7])]=1; 	   
-		       }
+		    	   mazeData1[Integer.parseInt(arr[7])][k]=1;  
+	           }
+		       for(int t=1;t<Integer.parseInt(arr[8]);t++)
+		       {
+		    	   mazeData1[t][Integer.parseInt(arr[8])]=1; 
+	           }
                mazeData1[Integer.parseInt(arr[7])][Integer.parseInt(arr[8])]=1;
-		       mazeData1[0][1]=0; //start place
-		       mazeData1[0][0]=0; 
-		       mazeData1[1][0]=0; 
-		       mazeData1[Integer.parseInt(arr[7])][Integer.parseInt(arr[8])]=1;
-		       mazeData1[Integer.parseInt(arr[7])][Integer.parseInt(arr[8])-1]=0;	 
+               //goal:
+		       mazeData1[Integer.parseInt(arr[7])][Integer.parseInt(arr[8])-1]=2;
+		       
 		       
 	   setMazeData(mazeData1);						
 	}
@@ -159,9 +193,14 @@ public class Maze extends Canvas{
 		}
 		switch (client) {
 		case "Left":	
-			if (mazeData[c.y][c.x-1]==0){
+			if (mazeData[c.y][c.x-1]==0)
+			{
 				c.x=c.x-1;
 				redraw();
+			}
+			if (mazeData[c.y][c.x-1]==2)
+			{
+				WinWindows();
 			}
 			break;
 		case "Right":
@@ -170,6 +209,10 @@ public class Maze extends Canvas{
 			c.x=c.x+1;
 			redraw();
 			}		
+			if (mazeData[c.y][c.x+1]==2)
+			{
+				WinWindows();
+			}
 			break;
 		case "Down":
 			if (mazeData[c.y+1][c.x]==0)
@@ -177,6 +220,10 @@ public class Maze extends Canvas{
 				c.y=c.y+1;
 				redraw();
 			}	
+			if (mazeData[c.y+1][c.x]==2)
+			{
+				WinWindows();
+			}
 			break;
 		case "Up":
 			if (mazeData[c.y-1][c.x]==0)
@@ -184,10 +231,16 @@ public class Maze extends Canvas{
 			 c.y=c.y-1;
 			 redraw();
 			}	
+			if (mazeData[c.y-1][c.x]==2)
+			{
+				WinWindows();
+			}
 			break;
 		default:
 			break;
 		   }
 		redraw();			
 	}
+	public void WinWindows()
+	{System.out.println("win!!");}
 }

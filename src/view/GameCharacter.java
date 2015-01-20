@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Display;
 
 	class GameCharacter{
 		 int x,y;
-		 Image image=new Image(Display.getDefault(),"resources/Linux small.jpg");
+		 Image image=new Image(Display.getDefault(),"resources/matrixG.jpg");
 		public GameCharacter(int x,int y) {
 		
 			 this.x=x;this.y=y;
@@ -16,8 +16,6 @@ import org.eclipse.swt.widgets.Display;
 			//e.gc.setForeground(new Color(null,255,0,0));
 			//e.gc.drawOval(x*w,y*h,w,h);
 			 //e.gc.drawImage(image, 0,0);
-			e.gc.drawImage(image,0,0,40,41,x*w,y*h,w,h);
-		
-
+			e.gc.drawImage(image,0,0,225,225,x*w,y*h,w,h);
 		   }
 		}

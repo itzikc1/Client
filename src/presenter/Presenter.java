@@ -65,7 +65,7 @@ public class Presenter implements Observer {
 		MyModel model = new MyModel();
 		//Create the windows start
 	    Presenter presenter = new Presenter(model);	
-	    SelectGameWindow view = new SelectGameWindow(presenter,300, 300, "The Games");
+	    SelectGameWindow view = new SelectGameWindow(presenter,565, 500, "The Games");
 		model.addObserver(presenter);
 		view.run();
 		//MyConsoleView view = new MyConsoleView();

@@ -6,11 +6,14 @@ package view;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 
 import presenter.Presenter;
@@ -48,15 +51,19 @@ public class PropretiesMaze extends PropretiesWindow {
 	}
 	@Override
 	void initWidgets() {
+		////////////////////////////////////
+		Image t=new Image(Display.getDefault(),"resources/blue.jpg");
+		shell.setBackgroundImage(t);
+		////////////////////////////////////
 		 shell.setLayout(new GridLayout(1, false));		  
 		  //fill all the windows 
 		  Button start = new Button(shell, SWT.PUSH);
 		  start.setText("Start");
 		  start.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		  Label lblRow = new Label(shell, SWT.NONE);
-		  lblRow.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
-		  lblRow.setText("Enter row: ");
-		  Text row=new Text(shell,SWT.MULTI | SWT.BORDER);
+		lblRow.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+		lblRow.setText("Enter row: ");
+	   Text row=new Text(shell,SWT.MULTI | SWT.BORDER);
   	   row.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
   	   Label lblColl = new Label(shell, SWT.NONE);
   	   lblColl.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
@@ -117,7 +124,12 @@ public class PropretiesMaze extends PropretiesWindow {
 				setRow(row.getText());
 				setCol(col.getText());
 				setWall(wall.getText());
-				UIView window = new MazeGameWindow1(presenter,null,400,300, "Maze Game",getUserAction());
+				if((row.getText())==(col.getText()))
+				{
+					
+				}
+				
+				UIView window = new MazeGameWindow1(presenter,null,500,400, "Maze Game",getUserAction());
 			    window.run();	
 					
 			}
