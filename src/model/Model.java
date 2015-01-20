@@ -9,6 +9,7 @@ public interface Model extends Task{
 	void solveDomain();//to play algorithm
 	Solution getSolution();//get solution of the problem
 	void addObserver(Observer o);
+	Problem getProblem();
 }	
 
 

@@ -1,15 +1,22 @@
 package model;
 
 import java.util.Observable;
+
 import networking.Client;
 
 public class MyModel extends Observable implements Model {
 	private Problem problem=new Problem();
+	
 	private Solution solution;
+	 private SearchDomain domain;
 	//select the specific problem
 	@Override
 	public void selectDomain(String domainName) {			
-		this.problem.setDomainName(domainName);
+		DomainFactory domainFactory=new DomainFactory();
+		this.problem.setDomainName(domainFactory.getDomain(domainName));
+		this.setChanged();
+		this.notifyObservers();	
+		
 	}
 	//select the algorithm to solve the problem
 	@Override
@@ -33,4 +40,9 @@ public class MyModel extends Observable implements Model {
 	public void doTask() {
 		solveDomain();
 	}
+	@Override
+	public Problem getProblem() {
+		return this.problem;
+	}
+	
 }

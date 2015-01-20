@@ -5,16 +5,20 @@ import java.util.Observable;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import presenter.Presenter;
+
 public abstract class BasicWindow extends Observable implements Runnable {
 	
 	protected Display display;
 	protected Shell shell;
+	protected Presenter presenter;
 	//Contractor for start default windows 
-	public BasicWindow(int width, int height,String title) {
+	public BasicWindow(Presenter presenter,int width, int height,String title) {
 		display=new Display();
 		shell=new Shell(display);
 		shell.setSize(width, height);//the size of windows 
 		shell.setText(title);//the title on margins
+		this.presenter = presenter;
 	}
 	
 	abstract void initWidgets();

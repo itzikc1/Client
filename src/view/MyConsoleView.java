@@ -57,4 +57,9 @@ public class MyConsoleView extends Observable implements View{
 		System.out.println("\n the time is:");
 		System.out.println(solution.getTime());
 	}
+	@Override
+	public void displayProblem(Problem problem) {
+		// TODO Auto-generated method stub
+		
+	}
 }

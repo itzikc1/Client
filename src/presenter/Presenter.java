@@ -12,6 +12,14 @@ public class Presenter implements Observer {
 	private View view;
 	private UserCommands commands;
 	private ArrayList<Model> models; // all running models
+	
+	//add now
+	public Presenter(Model model) {
+		this(model, null);
+	}
+	public void setView(View view) {
+		this.view = view;
+	}
 	public Presenter(Model model, View view) {
 		this.model = model;
 		this.view = view;
@@ -24,6 +32,7 @@ public class Presenter implements Observer {
 		// go to model
 		if (o instanceof Model) {
 			Solution solution = model.getSolution();
+			view.displayProblem(model.getProblem());
 			view.displaySolution(solution);
 		}
 		// go to view
@@ -54,10 +63,15 @@ public class Presenter implements Observer {
 	// //////////main/////////////////////////////
 	public static void main(String[] args) {
 		MyModel model = new MyModel();
-		MyConsoleView view = new MyConsoleView();
-		Presenter presenter = new Presenter(model, view);
+		//Create the windows start
+	    Presenter presenter = new Presenter(model);	
+	    SelectGameWindow view = new SelectGameWindow(presenter,300, 300, "The Games");
 		model.addObserver(presenter);
-		view.addObserver(presenter);
-		view.start();
+		view.run();
+		//MyConsoleView view = new MyConsoleView();
+		//Presenter presenter = new Presenter(model, view);
+		//model.addObserver(presenter);
+		//view.addObserver(presenter);
+		//view.start();
 	}
 }

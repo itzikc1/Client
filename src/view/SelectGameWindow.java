@@ -8,37 +8,37 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 
+import presenter.Presenter;
+
 public class SelectGameWindow extends BasicWindow{
-	public SelectGameWindow(int width, int height, String title) {
-		super(width, height, title);		
+	public class StringHolder{
+		String setselected;
+		
+		public String getSetselected() {
+			return setselected;
+		}
+		public void setSetselected(String setselected) {
+			this.setselected = setselected;
+		}
 	}
+	public SelectGameWindow(Presenter presenter,int width, int height, String title) {
+		super(presenter,width, height, title);}
+
 	@Override
 	void initWidgets() {
+
 	    shell.setLayout(new GridLayout(1, false));	
 	    //Create the select button 
-		final Combo combo = new Combo(shell, SWT.READ_ONLY);	
-		combo.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false));
-	    String items[] = { "EightPuzzle", "Maze" };
-	    combo.setItems(items);
-	    //////Create the start button  
-	    Button btnSelectModel = new Button(shell, SWT.PUSH);
-	    btnSelectModel.setText("Start");
-	    btnSelectModel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
-	    btnSelectModel.addSelectionListener(new SelectionListener() {
-			
+	    final StringHolder message=new StringHolder(); 
+	    message.setSetselected("not pressed");  
+	    Button mazebutton = new Button(shell, SWT.RADIO);
+	    mazebutton.setText("Maze");
+	    Button eightpuzzle = new Button(shell, SWT.RADIO);
+	    eightpuzzle.setText("Eight Puzzle");
+	    mazebutton.addSelectionListener(new SelectionListener() {	
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				// Choose window according to the game 				
-				display.dispose();
-				if(arg0.text=="Maze")
-				{
-				BasicWindow window = new MazeGameWindow(400, 300, "Maze Game");
-			    window.run();
-				}
-				else{
-				BasicWindow window = new MazeGameWindow(400, 300, "Eight Puzzle Game");
-			    window.run();
-				}
+				message.setSetselected("Maze");	
 			}
 			
 			@Override
@@ -47,6 +47,48 @@ public class SelectGameWindow extends BasicWindow{
 				
 			}
 		});
+	    eightpuzzle.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				message.setSetselected("EightPuzzle");	
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	    //////Create the start button  
+	    Button btnSelectModel = new Button(shell, SWT.PUSH);
+	    btnSelectModel.setText("Start");
+	    btnSelectModel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+	    btnSelectModel.addSelectionListener(new SelectionListener() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// Choose window according to the game 	  
+				//display.dispose();	
+				if(message.getSetselected().equals("Maze"))
+				{
+				PropretiesWindow mazepro =new PropretiesMaze(presenter, display, 400,300,"Maze Propreties");
+				mazepro.run();
+//				BasicWindow window = new MazeGameWindow(400, 300, "Maze Game");
+//			    window.run();	
+				}
+				//if(message.getSetselected().equals("EightPuzzle"))
+				//{
+//				BasicWindow window = new MazeGameWindow(400, 300, "EightPuzzle");
+//			    window.run();	
+				//}		
+			}	
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+				
 	}
-
 }
