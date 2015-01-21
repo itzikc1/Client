@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Display;
 
 public class Maze extends Canvas{
 	Problem problem;
+	boolean win=false;
 	public Problem getProblem() {
 		return problem;
 	}
@@ -186,11 +187,7 @@ public class Maze extends Canvas{
 		this.mazeData = mazeData;
 	}     
 	public void startPlayer(String client){
-		
-		if((c.x+1 > mazeData[0].length)|| (c.y+1 > mazeData[0].length))
-		{
-			return;
-		}
+
 		switch (client) {
 		case "Left":	
 			if (mazeData[c.y][c.x-1]==0)
@@ -200,7 +197,7 @@ public class Maze extends Canvas{
 			}
 			if (mazeData[c.y][c.x-1]==2)
 			{
-				WinWindows();
+				this.win=true;
 			}
 			break;
 		case "Right":
@@ -211,7 +208,7 @@ public class Maze extends Canvas{
 			}		
 			if (mazeData[c.y][c.x+1]==2)
 			{
-				WinWindows();
+				this.win=true;
 			}
 			break;
 		case "Down":
@@ -222,7 +219,7 @@ public class Maze extends Canvas{
 			}	
 			if (mazeData[c.y+1][c.x]==2)
 			{
-				WinWindows();
+				this.win=true;
 			}
 			break;
 		case "Up":
@@ -233,7 +230,7 @@ public class Maze extends Canvas{
 			}	
 			if (mazeData[c.y-1][c.x]==2)
 			{
-				WinWindows();
+				this.win=true;
 			}
 			break;
 		default:
@@ -241,6 +238,12 @@ public class Maze extends Canvas{
 		   }
 		redraw();			
 	}
-	public void WinWindows()
-	{System.out.println("win!!");}
+	public boolean WinWindows()
+	{
+		
+		return win; 
+		
+		
+	}
+		
 }

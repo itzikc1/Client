@@ -15,12 +15,35 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import presenter.Presenter;
-public class WinWindows extends UIView {
 
-	public WinWindows(Presenter presenter, Display display, int width,
+public class WarningWindows extends UIView{
+
+	public WarningWindows(Presenter presenter, Display display, int width,
 			int height, String title) {
 		super(presenter, display, width, height, title);
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	void initWidgets() {
+		 shell.setLayout(new GridLayout(1, false));
+		
+		   Label lblwall = new Label(shell, SWT.NONE);
+	  	   lblwall.setLayoutData(new GridData(SWT.FILL,SWT.CENTER,false,false,1,1));
+	  	   lblwall.setText("you entered too much wall please try again");
+	  	   Button ok = new Button(shell, SWT.PUSH);
+	  	   ok.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+	  	   ok.setText("OK");
+		   ok.addSelectionListener(new SelectionListener() {	
+				@Override
+				public void widgetSelected(SelectionEvent arg0) {
+					shell.close();	
+				}				
+				@Override
+				public void widgetDefaultSelected(SelectionEvent arg0) {	
+				}
+			});
+		
 	}
 
 	@Override
@@ -53,30 +76,5 @@ public class WinWindows extends UIView {
 		
 	}
 
-	@Override
-	void initWidgets() {
-		//Image t=new Image(Display.getDefault(),"resources/win.jpg");
-		 //shell.setBackgroundImage(t);
-		 shell.setLayout(new GridLayout(1, false));
-		  Button mazebutton = new Button(shell, SWT.PUSH);
-		  Image maze=new Image(Display.getDefault(),"resources/win.jpg");
-		  mazebutton.setImage(maze);
-		  mazebutton.addSelectionListener(new SelectionListener() {	
-				@Override
-				public void widgetSelected(SelectionEvent arg0) {
-					shell.close();	
-				}
-				
-				@Override
-				public void widgetDefaultSelected(SelectionEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-	}
-
 	
-			
-
-
 }

@@ -78,9 +78,10 @@ public class SelectGameWindow extends BasicWindow{
 				// Choose window according to the game 	  
 				//display.dispose();	
 				if(message.getSetselected().equals("Maze"))
-				{
+				{					
 				PropretiesWindow mazepro =new PropretiesMaze(presenter, display, 400,300,"Maze Propreties");
 				mazepro.run();
+			
 //				BasicWindow window = new MazeGameWindow(400, 300, "Maze Game");
 //			    window.run();	
 				}

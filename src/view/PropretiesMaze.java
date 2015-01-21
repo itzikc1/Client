@@ -20,9 +20,11 @@ import presenter.Presenter;
 
 public class PropretiesMaze extends PropretiesWindow {
 	private Presenter presenter;
+	private Display display;
 	public PropretiesMaze(Presenter presenter, Display display, int width, int height,String title) {
 		super(presenter,display, width, height, title);
 		this.presenter=presenter;
+		this.display=display;
 	}
 	private String userAction="Select maze";
 	private String row;
@@ -124,13 +126,17 @@ public class PropretiesMaze extends PropretiesWindow {
 				setRow(row.getText());
 				setCol(col.getText());
 				setWall(wall.getText());
-				if((row.getText())==(col.getText()))
+				String[] arr = getRow().split(" ");
+				String[] arr1 = getWall().split(" ");
+				if((Integer.valueOf(arr[0]))/2<Integer.valueOf(getWall()))
 				{
-					
+					UIView warning = new WarningWindows(presenter,display,250,100, "Game");
+					warning.run();	
 				}
-				
+				else{
 				UIView window = new MazeGameWindow(presenter,null,500,400, "Maze Game",getUserAction());
 			    window.run();	
+				}
 					
 			}
 			@Override

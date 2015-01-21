@@ -27,6 +27,7 @@ public class MazeGameWindow extends UIView {
 	String setselected;
 	Solution solution;
 	Problem problem;
+	Presenter presenter;
 	public String getSetselected() {
 		return setselected;
 	}
@@ -35,6 +36,7 @@ public class MazeGameWindow extends UIView {
 	}
 	public MazeGameWindow(Presenter presenter,Display display,int width, int height, String title,String UserAction) {
 		super(presenter,display,width, height, title);
+		this.presenter=presenter;
 		this.UserAction=UserAction;
 	}
 	@Override
@@ -94,6 +96,7 @@ public class MazeGameWindow extends UIView {
 					case 16777217:
 					{
 						maze.startPlayer("Up");
+						
 						System.out.println("Up");
 						break;
 					}
@@ -103,8 +106,16 @@ public class MazeGameWindow extends UIView {
 						System.out.println("Down");
 						break;
 					}	
-					}			
+					}
+					if(maze.WinWindows()==true)
+					{						
+						UIView window = new WinWindows(presenter,null,620,400, "win game");
+					    window.run();
+					    shell.close();	
+					}
+							
 				}
+				
 			});		
             ///////////////////////////////////////////////////////////////	
 			solveserver.addSelectionListener(new SelectionListener() {		
