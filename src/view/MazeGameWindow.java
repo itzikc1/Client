@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Text;
 import presenter.Presenter;
 
 
-public class MazeGameWindow1 extends UIView {
+public class MazeGameWindow extends UIView {
 	String UserAction;
 	String setselected;
 	Solution solution;
@@ -33,14 +33,14 @@ public class MazeGameWindow1 extends UIView {
 	public void setSetselected(String setselected) {
 		this.setselected = setselected;
 	}
-	public MazeGameWindow1(Presenter presenter,Display display,int width, int height, String title,String UserAction) {
+	public MazeGameWindow(Presenter presenter,Display display,int width, int height, String title,String UserAction) {
 		super(presenter,display,width, height, title);
 		this.UserAction=UserAction;
 	}
 	@Override
 	void initWidgets() {
-		MazeGameWindow1.this.setChanged();
-		MazeGameWindow1.this.notifyObservers();
+		MazeGameWindow.this.setChanged();
+		MazeGameWindow.this.notifyObservers();
 		shell.setLayout(new GridLayout(2, false));		  
 		   //fill all the windows 
 		   Button start = new Button(shell, SWT.PUSH);
@@ -113,19 +113,19 @@ public class MazeGameWindow1 extends UIView {
 					if(getSetselected()=="BFS")
 					UserAction=null;
 					UserAction="Algorithm bfs";
-					MazeGameWindow1.this.setChanged();
-					MazeGameWindow1.this.notifyObservers();
+					MazeGameWindow.this.setChanged();
+					MazeGameWindow.this.notifyObservers();
 					if(getSetselected()=="A-star")
 					{
 						UserAction=null;
 						UserAction="Algorithm a-star";
-						MazeGameWindow1.this.setChanged();
-						MazeGameWindow1.this.notifyObservers();
+						MazeGameWindow.this.setChanged();
+						MazeGameWindow.this.notifyObservers();
 					}
 					UserAction=null;
 					UserAction="Solve";
-					MazeGameWindow1.this.setChanged();
-					MazeGameWindow1.this.notifyObservers();
+					MazeGameWindow.this.setChanged();
+					MazeGameWindow.this.notifyObservers();
 					
 				}			
 				@Override

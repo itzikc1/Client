@@ -129,7 +129,7 @@ public class PropretiesMaze extends PropretiesWindow {
 					
 				}
 				
-				UIView window = new MazeGameWindow1(presenter,null,500,400, "Maze Game",getUserAction());
+				UIView window = new MazeGameWindow(presenter,null,500,400, "Maze Game",getUserAction());
 			    window.run();	
 					
 			}
