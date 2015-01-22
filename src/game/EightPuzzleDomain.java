@@ -1,8 +1,11 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
+
+import org.eclipse.swt.graphics.Image;
 
 import model.*;
 
@@ -16,28 +19,16 @@ public class EightPuzzleDomain implements SearchDomain {
 	public EightPuzzleDomain(String matrix) {
 		////////////////////////////
 		//String fixMatrix="012345678";
-		String matrixRandom =" ";
+		String matrixRandom;
+		
+		
 		if (matrix.equals("null"))
 		{
-//			Random rand= new Random();
-//			int arr[]=new int[9];
-//			for (int i=0; i<arr.length;i++){
-//			int  n = rand.nextInt(9)+1;
-//			if(Arrays.equals(arr[i], n))
-//				
-//			Arrays.
-//			arr[i]=n;}		
-//			Arrays.sort(arr);	
-//			for (int i=0; i<arr.length;i++){
-//				int  n = rand.nextInt(9)+1;
-//				arr[i]=n;
-//				}	
-//			for (int i=0; i<arr.length;i++){
-//				matrixRandom +=String.valueOf(arr[i]);
-//			}
-//			this.problem = matrixRandom;	
-//			this.start = new EightPuzzleState(matrixRandom);
-			}
+			
+			matrixRandom=randomOrder();
+			this.problem = matrixRandom;
+			this.start = new EightPuzzleState(matrixRandom);
+		}
 			
 	
 	
@@ -48,6 +39,23 @@ public class EightPuzzleDomain implements SearchDomain {
 		}
 	}
 	
+	private String randomOrder() {
+		
+		
+		String matrixRandom="012345678";
+		
+		Random rand= new Random();
+		
+		for (int i = 1; i < 9; i++) {
+			int n = rand.nextInt(8)+1;
+			char tamp=matrixRandom.charAt(i);
+			matrixRandom.replace(matrixRandom.charAt(i), matrixRandom.charAt(n));
+			matrixRandom.replace(matrixRandom.charAt(n), matrixRandom.charAt(tamp));
+		}
+		
+		return matrixRandom;
+	}
+
 	@Override
 	public State getStartState() {
 		return start;
