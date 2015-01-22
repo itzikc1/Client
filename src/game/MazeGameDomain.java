@@ -53,29 +53,29 @@ public class MazeGameDomain implements SearchDomain{
 	//Create the All Possible Moves
 	@Override
 	public HashMap<Action, State> getAllPossibleMoves(State current) {
-		HashMap<Action,State> moves=new  HashMap<>();		
-		MazeGameState a=(MazeGameState)current;
+		HashMap<Action,State> moves=new  HashMap<>();
+MazeGameState a=(MazeGameState)current;
 		Action left=new Action("Left");
 		Action right=new Action("Right");
 		Action down=new Action("Down");
 		Action up=new Action("Up");	
-		if(current.getWall() == false)
+		if(a.getWall() == false)
 		{	
-		if(a.stateX>0)
+		if((a.stateY>0) && (maze[a.stateX ][a.stateY-1].getWall()==false))
 		{
-			moves.put(left, maze[a.stateX-1][a.stateY]);	
+			moves.put(left, maze[a.stateX ][a.stateY-1]);	
 		}
-		if (a.stateX<(coll-1))
+		if ((a.stateY < coll - 1) && (maze[a.stateX][a.stateY + 1].getWall()==false))
 		{		
-			moves.put(right, maze[a.stateX+1][a.stateY]);
+			moves.put(right, maze[a.stateX][a.stateY + 1]);
 		}
-		if (a.stateY>0 )
+		if ((a.stateX>0) && (maze[a.stateX-1 ][a.stateY ].getWall()==false))
 		{
-			moves.put(up, maze[a.stateX][a.stateY-1]);
+			moves.put(up, maze[a.stateX-1 ][a.stateY ]);
 		}
-		if (a.stateY<row-1)
+		if ((a.stateX < row -1) && ( maze[a.stateX +1 ][a.stateY]).getWall()==false)
 		{
-			moves.put(down, maze[a.stateX][a.stateY+1]);		
+			moves.put(down, maze[a.stateX +1 ][a.stateY]);		
 		}
 		}	
 		return moves;
