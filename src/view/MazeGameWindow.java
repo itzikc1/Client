@@ -109,7 +109,7 @@ public class MazeGameWindow extends UIView {
 					}
 					if(maze.WinWindows()==true)
 					{						
-						UIView window = new WinWindows(presenter,null,620,400, "win game");
+						UIView window = new WinWindows(presenter,null,520,258, "win game");
 					    window.run();
 					    shell.close();	
 					}

@@ -54,7 +54,7 @@ public class PropretiesMaze extends PropretiesWindow {
 	@Override
 	void initWidgets() {
 		////////////////////////////////////
-		Image t=new Image(Display.getDefault(),"resources/blue.jpg");
+		Image t=new Image(Display.getDefault(),"resources/maze properties.jpeg");
 		shell.setBackgroundImage(t);
 		////////////////////////////////////
 		 shell.setLayout(new GridLayout(1, false));		  
@@ -126,11 +126,14 @@ public class PropretiesMaze extends PropretiesWindow {
 				setRow(row.getText());
 				setCol(col.getText());
 				setWall(wall.getText());
+//				setRow(row.getText());
+//				setCol(col.getText());
+//				setWall(wall.getText());
 				String[] arr = getRow().split(" ");
 				String[] arr1 = getWall().split(" ");
 				if((Integer.valueOf(arr[0]))/2<Integer.valueOf(getWall()))
 				{
-					UIView warning = new WarningWindows(presenter,display,250,100, "Game");
+					UIView warning = new WarningWindows(presenter,display,250,100, "Warning!!!");
 					warning.run();	
 				}
 				else{

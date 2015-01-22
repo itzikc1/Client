@@ -65,7 +65,7 @@ public class Maze extends Canvas{
 				   int height=getSize().y;
 				   int w=width/mazeData[0].length;
 				   int h=height/mazeData.length;				  
-				   Image r=new Image(Display.getDefault(),"resources/goal.jpg");
+				   Image r=new Image(Display.getDefault(),"resources/gole.jpg");
 				   for(int i=0;i<mazeData.length;i++){
 				      for(int j=0;j<mazeData[i].length;j++){
 				          int x=j*w;
@@ -77,7 +77,7 @@ public class Maze extends Canvas{
 				      }	
 				   }
 				   c.paint(e,w,h);
-				   e.gc.drawImage(r,0,0,100,100,(mazeData.length-2)*w,(mazeData.length-1)*h,w,h);
+				   e.gc.drawImage(r,0,0,256,256,(mazeData.length-2)*w,(mazeData.length-1)*h,w,h);
  
     		}
     	});

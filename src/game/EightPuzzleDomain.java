@@ -1,5 +1,6 @@
 package game;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -13,11 +14,40 @@ public class EightPuzzleDomain implements SearchDomain {
 	private EightPuzzleState goal = new EightPuzzleState("012345678");
 
 	public EightPuzzleDomain(String matrix) {
+		////////////////////////////
+		//String fixMatrix="012345678";
+		String matrixRandom =" ";
+		if (matrix.equals("null"))
+		{
+//			Random rand= new Random();
+//			int arr[]=new int[9];
+//			for (int i=0; i<arr.length;i++){
+//			int  n = rand.nextInt(9)+1;
+//			if(Arrays.equals(arr[i], n))
+//				
+//			Arrays.
+//			arr[i]=n;}		
+//			Arrays.sort(arr);	
+//			for (int i=0; i<arr.length;i++){
+//				int  n = rand.nextInt(9)+1;
+//				arr[i]=n;
+//				}	
+//			for (int i=0; i<arr.length;i++){
+//				matrixRandom +=String.valueOf(arr[i]);
+//			}
+//			this.problem = matrixRandom;	
+//			this.start = new EightPuzzleState(matrixRandom);
+			}
+			
+	
+	
+			else{
 		this.problem = matrix;
 		this.start = new EightPuzzleState(matrix);
-		System.out.println("\n");
+		//System.out.println("\n");
+		}
 	}
-
+	
 	@Override
 	public State getStartState() {
 		return start;

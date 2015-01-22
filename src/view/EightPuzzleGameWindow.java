@@ -19,8 +19,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
@@ -28,29 +30,29 @@ import presenter.Presenter;
 
 public class EightPuzzleGameWindow extends UIView{
 
+    Display display;
 	String UserAction;
-	String selected;
+	String setselected;
 	Solution solution;
-	Display display;
-	
-	
-	
+	Problem problem;
+	Presenter presenter;
+	public String getSetselected() {
+		return setselected;
+	}
+	public void setSetselected(String setselected) {
+		this.setselected = setselected;
+	}
 	public EightPuzzleGameWindow(Presenter presenter, Display display,
 			int width, int height, String title,String UserAction) {
 		super(presenter, display, width, height, title);
 		this.UserAction=UserAction;
 		this.display=display;
-		
-	   
-		
 	}
-
 	@Override
 	public String getUserAction() {
 		// TODO Auto-generated method stub
 		return this.UserAction;
 	}
-
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
@@ -71,44 +73,22 @@ public class EightPuzzleGameWindow extends UIView{
 
 	@Override
 	void initWidgets() {
-		//to do
-		
-//		EightPuzzleGameWindow.this.setChanged();
-//		EightPuzzleGameWindow.this.notifyObservers();
-		
-		
-		
+		//to do	
+		EightPuzzleGameWindow.this.setChanged();
+		EightPuzzleGameWindow.this.notifyObservers();	
 		shell.setLayout(new GridLayout(2, false));		
 		///// new game
-		EightPuzzle puzzle=new EightPuzzle(shell,SWT.MULTI | SWT.BORDER);
+		EightPuzzle puzzle=new EightPuzzle(shell,SWT.MULTI | SWT.BORDER,problem);
 		puzzle.setLayoutData(new GridData(SWT.FILL,SWT.FILL,true,true,1,8));
 		
 		Image a=new Image(Display.getDefault(), "resources/acs.jpg");
 		puzzle.setBackgroundImage(a);
-		   
-		
-		
 		//// start button
 		Button start = new Button(shell, SWT.PUSH);
 	    start.setText("Start");
 	    start.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
-	    
-	    start.addSelectionListener(new SelectionListener() {
-
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				//puzzle.setSolution(solution.getAction());
-				puzzle.start();	
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		
-	} );
+	    Label lblAlgorithm = new Label(shell, SWT.NONE);
+		lblAlgorithm.setText("Choose algorithm: ");
 ////////////////////////////////////////////////////////////////////////////////////////////	    
 	    Button stop = new Button(shell, SWT.PUSH);
 	    stop.setText("stop");
@@ -117,86 +97,135 @@ public class EightPuzzleGameWindow extends UIView{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+				// TODO Auto-generated method stub			
+			}		
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub			
 			}
-		});
-	    
-///////////////////////////////////////////////////////////////////////////////////////////////////////	    
-	    puzzle.addKeyListener(new KeyListener() {
-			
+		});	    
+///////////////////////////////////////////////////////////////////////////////////////////////////////	       
+	    puzzle.addKeyListener(new KeyListener() {		
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+				// TODO Auto-generated method stub			
+			}		
 			@Override
-			public void keyPressed(KeyEvent e) {
-				switch(e.keyCode){
-				
+			public void keyPressed(KeyEvent e) {			
+				switch(e.keyCode){			
 				case SWT.ARROW_UP:{
-					if(puzzle.counter!=0 || puzzle.counter!=1 || puzzle.counter!=2){
-					puzzle.moves("up" );
-					
-					
-					
+					if(puzzle.counter!=0 && puzzle.counter!=1 && puzzle.counter!=2){
+					puzzle.moves("up" );		
 				}
 					break;
-				}
-				
+			}			
 				case SWT.ARROW_DOWN:{
-					if(puzzle.counter!=6 || puzzle.counter!=7 || puzzle.counter!=8){
+					if(puzzle.counter!=6 && puzzle.counter!=7 && puzzle.counter!=8){
 					puzzle.moves("down");
 			        break;
 			}
 				}
 				case SWT.ARROW_LEFT:{
-					if(puzzle.counter!=2 || puzzle.counter!=5 || puzzle.counter!=8){
-					puzzle.moves("left");
-			        
+					if(puzzle.counter!=0 && puzzle.counter!=3 && puzzle.counter!=6){
+					puzzle.moves("left");			        
 					}
 					break;
-			}
-				
+			}		
 				case SWT.ARROW_RIGHT:{
-					if(puzzle.counter!=0 || puzzle.counter!=3 ||puzzle.counter!=6){
-					puzzle.moves("right");
-					
+					if(puzzle.counter!=2 && puzzle.counter!=5 &&puzzle.counter!=8){
+					puzzle.moves("right");				
 					}
 					break;
 			}
-		}
-			
-		}
-			
-		
-	   
-
+		}			
+	}
 	});	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+	    Button random = new Button(shell, SWT.PUSH);
+	    random.setText("random");
+	    random.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+	    random.addSelectionListener(new SelectionListener() {
+	    	boolean flag=false; 
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub		
+			}
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				if(flag!=true){
+				puzzle.random(problem);
+				flag=true;
+				}
+				
+			}
+	    
+	    });
 
-
-
-	    
-	
-	    
-	    
-	    
-	    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////	    
+	    final Combo combo = new Combo(shell, SWT.READ_ONLY);	
+		combo.setLayoutData(new GridData(SWT.FILL, SWT.TOP,false, false,1,1));
+	    String items[] = { "BFS", "A-star" };
+	    combo.setItems(items);
+	    Button solveserver = new Button(shell, SWT.PUSH);
+	    solveserver.setText("solve with server");
+	    solveserver.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+	    combo.addSelectionListener(new SelectionListener() {				
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				setSetselected(combo.getText());					
+			}				
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub				
+			}
+		});
+		solveserver.addSelectionListener(new SelectionListener() {		
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				if(getSetselected()=="BFS")
+				UserAction=null;
+				UserAction="Algorithm bfs";
+				EightPuzzleGameWindow.this.setChanged();
+				EightPuzzleGameWindow.this.notifyObservers();
+				if(getSetselected()=="A-star")
+				{
+					UserAction=null;
+					UserAction="Algorithm a-star";
+					EightPuzzleGameWindow.this.setChanged();
+					EightPuzzleGameWindow.this.notifyObservers();
+				}
+				UserAction=null;
+				UserAction="Solve";
+				EightPuzzleGameWindow.this.setChanged();
+				EightPuzzleGameWindow.this.notifyObservers();
+				
+			}			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub					
+			}
+        });
+	   
+	    start.addSelectionListener(new SelectionListener() {
+		@Override
+		public void widgetSelected(SelectionEvent arg0) {
+			puzzle.setSolution(solution.getAction());
+			//puzzle.start();	
+		}		
+		@Override
+		public void widgetDefaultSelected(SelectionEvent arg0) {
+			// TODO Auto-generated method stub				
+		}
+	});
 	    
 	/// end (start)
 	       
 	}
+	
 
 	@Override
 	public void displayProblem(Problem problem) {
-		// TODO Auto-generated method stub
-		
+		this.problem=problem;	
 	}
 }

@@ -79,17 +79,14 @@ public class SelectGameWindow extends BasicWindow{
 				//display.dispose();	
 				if(message.getSetselected().equals("Maze"))
 				{					
-				PropretiesWindow mazepro =new PropretiesMaze(presenter, display, 400,300,"Maze Propreties");
+				PropretiesWindow mazepro =new PropretiesMaze(presenter, display, 1000,563,"Maze Propreties");
 				mazepro.run();
-			
-//				BasicWindow window = new MazeGameWindow(400, 300, "Maze Game");
-//			    window.run();	
 				}
-				//if(message.eightpuzzleButton().equals("EightPuzzle"))
-				//{
-//				BasicWindow window = new MazeGameWindow(400, 300, "EightPuzzle");
-//			    window.run();	
-				//}		
+				if(message.getSetselected().equals("EightPuzzle"))
+				{
+				EightPuzzleProprties window = new EightPuzzleProprties(presenter, display,500,500, "EightPuzzle");
+			    window.run();	
+				}		
 			}	
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
