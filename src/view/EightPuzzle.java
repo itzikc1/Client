@@ -138,10 +138,10 @@ public class EightPuzzle extends Canvas {
 	public void random(Problem problem) {
 		
 		this.problem=problem;
-		String[] arr = problem.getDomainName().split(" ");
+		String[] arr = problem.getDomainName().split("");
 		//problem.getDomainName().valueOf(i);
 		for (int i = 0; i < 9; i++) {	
-	//	images.add(new Image(Display.getDefault(),"resources/" + arr. + ".jpg"));	
+		images.add(new Image(Display.getDefault(),"resources/" + arr[i] + ".jpg"));	
 			
 		}
 		redraw();
