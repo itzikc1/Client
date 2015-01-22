@@ -12,10 +12,6 @@ import org.eclipse.swt.widgets.Display;
 			 this.x=x;this.y=y;
 		   }
 		   public void paint(PaintEvent e,int w,int h){
-			// Image image=new Image(Display.getDefault(),"resources/1.jpg");
-			//e.gc.setForeground(new Color(null,255,0,0));
-			//e.gc.drawOval(x*w,y*h,w,h);
-			 //e.gc.drawImage(image, 0,0);
 			e.gc.drawImage(image,0,0,256,256,x*w,y*h,w,h);
 		   }
 		}

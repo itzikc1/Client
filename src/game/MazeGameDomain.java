@@ -39,7 +39,6 @@ public class MazeGameDomain implements SearchDomain{
 				System.out.print("|");
 				maze[i][j]= new MazeGameState(i, j,String.valueOf(1));             
 			}	
-			System.out.println("");	
 			}
 	}		
 	 public State getStartState() {	
@@ -121,30 +120,7 @@ MazeGameState a=(MazeGameState)current;
 				 this.wall1+=String.valueOf(s);
 				 this.wall1+=" ";
 	       }
-			 //////////////////////////////////////////
-//			 this.wall1+=String.valueOf(this.row);
-//			 this.wall1+=" ";
-//			 this.wall1+=String.valueOf(k);	
-//			 this.wall1+=" ";
-//			 this.wall1+=String.valueOf(k);	
-//			 this.wall1+=" ";
-//			 this.wall1+=String.valueOf(this.row);
-//			 this.wall1+=" ";
-     
-//		for(int s=0;s<row;s++)
-//		{
-//			
-//			 maze[s][row].setWall(true);
-//			 this.wall1+=String.valueOf(this.row);
-//			 this.wall1+=" ";
-//			 this.wall1+=String.valueOf(s);	
-//			 this.wall1+=" ";
-//			 maze[coll][s].setWall(true);
-//			 this.wall1+=String.valueOf(this.coll);
-//			 this.wall1+=" ";
-//			 this.wall1+=String.valueOf(s);
-//			 this.wall1+=" ";		
-//		}
+
 	}
 	@Override
 	public int GScore(State current) {

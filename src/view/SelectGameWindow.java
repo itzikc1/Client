@@ -48,7 +48,6 @@ public class SelectGameWindow extends BasicWindow{
 			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -62,7 +61,6 @@ public class SelectGameWindow extends BasicWindow{
 			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -75,8 +73,7 @@ public class SelectGameWindow extends BasicWindow{
 	    btnSelectModel.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				// Choose window according to the game 	  
-				//display.dispose();	
+				// Choose window according to the game 	  	
 				if(message.getSetselected().equals("Maze"))
 				{					
 				PropretiesWindow mazepro =new PropretiesMaze(presenter, display, 1000,563,"Maze Propreties");
@@ -84,13 +81,12 @@ public class SelectGameWindow extends BasicWindow{
 				}
 				if(message.getSetselected().equals("EightPuzzle"))
 				{
-				EightPuzzleProprties window = new EightPuzzleProprties(presenter, display,500,500, "EightPuzzle");
+				EightPuzzleProprties window = new EightPuzzleProprties(presenter, display,400,400, "EightPuzzle");
 			    window.run();	
 				}		
 			}	
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});

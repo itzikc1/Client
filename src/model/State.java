@@ -4,7 +4,6 @@ public abstract class State implements Comparable<State> {
 
 	public Action lastAction;
 	public State parent;
-	// /// for maze ,rigth,Left
 	public boolean wall = false;
 	public String matrix;
 

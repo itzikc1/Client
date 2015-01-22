@@ -1,14 +1,10 @@
 package game;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
-import org.eclipse.swt.graphics.Image;
-
 import model.*;
-
 
 
 public class EightPuzzleDomain implements SearchDomain {
@@ -17,45 +13,46 @@ public class EightPuzzleDomain implements SearchDomain {
 	private EightPuzzleState goal = new EightPuzzleState("012345678");
 
 	public EightPuzzleDomain(String matrix) {
-		////////////////////////////
-		//String fixMatrix="012345678";
+		// //////////////////////////
 		String matrixRandom;
-		
-		
-		if (matrix.equals("null"))
-		{
-			
-			matrixRandom=randomOrder();
+		if (matrix.equals("noting")) {
+
+			matrixRandom = randomOrder();
 			this.problem = matrixRandom;
 			this.start = new EightPuzzleState(matrixRandom);
 		}
-			
-	
-	
-			else{
-		this.problem = matrix;
-		this.start = new EightPuzzleState(matrix);
-		//System.out.println("\n");
+
+		else {
+			this.problem = matrix;
+			this.start = new EightPuzzleState(matrix);
+			// System.out.println("\n");
 		}
-	}
-	
-	private String randomOrder() {
-		
-		
-		String matrixRandom="012345678";
-		
-		Random rand= new Random();
-		
-		for (int i = 1; i < 9; i++) {
-			int n = rand.nextInt(8)+1;
-			char tamp=matrixRandom.charAt(i);
-			matrixRandom.replace(matrixRandom.charAt(i), matrixRandom.charAt(n));
-			matrixRandom.replace(matrixRandom.charAt(n), matrixRandom.charAt(tamp));
-		}
-		
-		return matrixRandom;
 	}
 
+	private String randomOrder() {
+		
+		String tamp = "012345678";
+		String[]matrixRandom=tamp.split("");
+		Random rand = new Random();
+      	
+		for (int i = 1; i < 9; i++) {
+			
+      		int n = rand.nextInt(8) + 1;
+          
+      		String t=new String();
+      		t=matrixRandom[i];
+      		matrixRandom[i]=matrixRandom[n];
+      		matrixRandom[n]=t;
+         }
+		String aaa=new String();
+		for (int i = 0; i < 9; i++) 
+		{
+			aaa=aaa+matrixRandom[i];
+		}
+		return aaa;
+	}
+	
+	
 	@Override
 	public State getStartState() {
 		return start;
@@ -147,11 +144,8 @@ public class EightPuzzleDomain implements SearchDomain {
 								a + 2);
 			}
 			EightPuzzleState nextCurrentRight = new EightPuzzleState(nextState);
-
 			moves.put(right, nextCurrentRight);
-
 		}
-
 		return moves;
 	}
 
@@ -197,7 +191,7 @@ public class EightPuzzleDomain implements SearchDomain {
 
 	@Override
 	public String getProblemDescription() {
-		return this.problem;
+		return "EightPuzzle"+" "+this.problem;
 	}
 
 }

@@ -21,6 +21,9 @@ import org.eclipse.swt.widgets.Display;
 public class Maze extends Canvas{
 	Problem problem;
 	boolean win=false;
+	public void setWin(boolean win) {
+		this.win = win;
+	}
 	public Problem getProblem() {
 		return problem;
 	}
@@ -46,20 +49,15 @@ public class Maze extends Canvas{
 	GameCharacter c;
 	Timer timer;
 	TimerTask task;
-	//Image image=new Image(Display.getDefault(),"resources/Linux small.jpg");
 	public Maze(Composite parent, int style,Problem problem) {
         super(parent, style);
         //devise is the display like many scream
        setProblem(problem);
-       // setBackground(new Color(null, 255, 255, 255));
-       
         c= new GameCharacter(0,0);
           addPaintListener(new PaintListener() {
     		@Override
     		public void paintControl(PaintEvent e) {
-    			//e.gc.setForeground(new Color(null,0,0,0));
-    			Image wall=new Image(Display.getDefault(),"resources/wall.jpg");
-				//e.gc.setBackground(new Color(null,0,0,0));//black wall	
+    			Image wall=new Image(Display.getDefault(),"resources/wall.jpg");	
 				   //create the size of the canvas
 				   int width=getSize().x;
 				   int height=getSize().y;
@@ -71,14 +69,12 @@ public class Maze extends Canvas{
 				          int x=j*w;
 				          int y=i*h;
 				          if(mazeData[i][j]!=0){//black wall 
-				         // e.gc.fillRectangle(x,y,w,h);
 				        	 e.gc.drawImage(wall, 0, 0, 100,100, x, y, w, h);				       
 				          }
 				      }	
 				   }
 				   c.paint(e,w,h);
 				   e.gc.drawImage(r,0,0,256,256,(mazeData.length-2)*w,(mazeData.length-1)*h,w,h);
- 
     		}
     	});
         addDisposeListener(new DisposeListener() {		
@@ -97,6 +93,11 @@ public class Maze extends Canvas{
 				getDisplay().syncExec(new Runnable() {
 					@Override
 					public void run() {
+						if(solution.size()==flag+1)
+						{
+							setWin(true);
+						stop();
+						}
 						switch (solution.get(flag).getActionName()) {
 						case "Left":
 							if (mazeData[c.y][c.x-1]==0)
@@ -107,7 +108,7 @@ public class Maze extends Canvas{
 							}
 							if (mazeData[c.y][c.x-1]==0)
 							{
-								WinWindows();
+								setWin(true);
 							}
 							break;
 						case "Right":
@@ -119,7 +120,7 @@ public class Maze extends Canvas{
 							}
 							if (mazeData[c.y][c.x+1]==0)
 							{
-								WinWindows();
+								setWin(true);
 							}
 							break;
 						case "Down":
@@ -130,7 +131,7 @@ public class Maze extends Canvas{
 							redraw();
 							}
 							if (mazeData[c.y+1][c.x]==0){
-								WinWindows();
+								setWin(true);
 							}
 							break;
 						case "Up":
@@ -141,7 +142,7 @@ public class Maze extends Canvas{
 							redraw();
 							}
 							if (mazeData[c.y-1][c.x]==0){
-								WinWindows();
+								setWin(true);
 							}
 							break;
 						default:

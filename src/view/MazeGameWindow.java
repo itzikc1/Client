@@ -112,10 +112,8 @@ public class MazeGameWindow extends UIView {
 						UIView window = new WinWindows(presenter,null,520,258, "win game");
 					    window.run();
 					    shell.close();	
-					}
-							
-				}
-				
+					}							
+				}				
 			});		
             ///////////////////////////////////////////////////////////////	
 			solveserver.addSelectionListener(new SelectionListener() {		

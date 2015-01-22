@@ -18,6 +18,7 @@ public class EightPuzzleProprties extends PropretiesWindow{
 		this.presenter=presenter;
 	}
 	private String userAction="Select EightPuzzle";
+	int flag=0;
 	private String choice;
 	public String getChoice() {
 		return choice;
@@ -50,7 +51,7 @@ public class EightPuzzleProprties extends PropretiesWindow{
 		  choose.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				//setUserChoice(null);				
+				flag+=1;				
 			}			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
@@ -60,7 +61,7 @@ public class EightPuzzleProprties extends PropretiesWindow{
 		  text.addSelectionListener(new SelectionListener() {			
 				@Override
 				public void widgetSelected(SelectionEvent arg0) {		
-					setChoice(text.getText());
+					setUserChoice(text.getText());
 				}			
 				@Override
 				public void widgetDefaultSelected(SelectionEvent arg0) {
@@ -72,20 +73,24 @@ public class EightPuzzleProprties extends PropretiesWindow{
 		  start.addSelectionListener(new SelectionListener() {
 		@Override
 		public void widgetSelected(SelectionEvent arg0) {
-			setUserChoice(text.getText());
-			//display.dispose();		
+			setUserChoice(text.getText());		
 			UIView window = new EightPuzzleGameWindow(presenter,null,750, 500, "Eight Puzzle Game",getUserAction());
 		    window.run();			
 		}
 		@Override
-		public void widgetDefaultSelected(SelectionEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void widgetDefaultSelected(SelectionEvent arg0) {		
 		}
 	});
 	}
 
 	protected String getUserAction() {
-	 return userAction+" "+getUserChoice();
+		if(flag==1)
+		{
+			return userAction+" "+"noting";
+		}
+		else {
+			 return userAction+" "+getUserChoice();
+		}
+	
 	}
 	}

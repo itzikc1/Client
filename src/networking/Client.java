@@ -13,7 +13,8 @@ public class Client {
 	private String serverAddress;
 	private int port;
 	public Client() {
-		MyProperties properties = GetProperties.readProperties();//define the server with XML Properties
+		//define the server with XML Properties
+		MyProperties properties = GetProperties.readProperties();
 		this.port = properties.getPort();
 		this.serverAddress=properties.getServerAddress();
 	}
